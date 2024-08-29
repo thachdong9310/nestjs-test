@@ -1,38 +1,52 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, NotFoundException, HttpStatus, HttpCode } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Types } from 'mongoose';
 
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService) { }
+    constructor(private readonly userService: UserService) {
+    }
 
     @Post()
-    create(@Body() createUserDto: CreateUserDto) {
+    @HttpCode(HttpStatus.CREATED)
+    async create(@Body() createUserDto: CreateUserDto) {
         return this.userService.create(createUserDto);
     }
 
     @Get()
+    @HttpCode(HttpStatus.OK)
     findAll() {
-        console.log('vao day');
-
         return this.userService.findAll();
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string) {
-        console.log(id);
+    @HttpCode(HttpStatus.OK)
+    async findOne(@Param('id') id: string) {
+        if (!Types.ObjectId.isValid(id)) {
+            throw new BadRequestException('Invalid ID format');
+        }
 
-        return this.userService.findOne(+id);
+        const user = await this.userService.findOne(+id);
+        if (!user) {
+            throw new NotFoundException('User not found');
+        }
+
+        return user;;
     }
 
     @Patch(':id')
+    @HttpCode(HttpStatus.OK)
     update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
         return this.userService.update(+id, updateUserDto);
     }
 
     @Delete(':id')
+    @HttpCode(HttpStatus.NO_CONTENT)
     remove(@Param('id') id: string) {
+        console.log('delete', id);
+
         return this.userService.remove(+id);
     }
 }
