@@ -20,7 +20,7 @@ export class UserController {
     }
 
     @Get(':id')
-    findOne(@Body('id') id: string) {
+    findOne(@Param('id') id: string) {
         console.log(id);
 
         return this.userService.findOne(+id);
