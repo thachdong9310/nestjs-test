@@ -3,11 +3,11 @@ import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 export class CreateUserDto {
     @IsNotEmpty({ message: 'Tên là bắt buộc' })
     @IsString({ message: 'Tên phải là một chuỗi' })
-    firstName: string;
+    first_name: string;
 
     @IsNotEmpty({ message: 'Họ là bắt buộc' })
     @IsString({ message: 'Họ phải là một chuỗi' })
-    lastName: string;
+    last_name: string;
 
     @IsNotEmpty({ message: 'Email bắt buộc' })
     @IsEmail({}, { message: 'Sai định dạng email' })
