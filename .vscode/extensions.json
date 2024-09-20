@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "humao.rest-client",
+    "rluvaton.vscode-vitest",
+    "vscode-icons-team.vscode-icons",
+    "voldemortensen.rainbow-tags",
+    "hediet.vscode-drawio",
+    "Angular.ng-template",
+    "zaaack.markdown-editor",
+    "yy0931.vscode-sqlite3-editor",
+    "BitBelt.converttoasciiart",
+    "ms-playwright.playwright",
+    "oderwat.indent-rainbow",
+    "SirTori.indenticator"
+  ]
+}

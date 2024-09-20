@@ -1,0 +1,110 @@
+{
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    },
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "never"
+    }
+  },
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    },
+    "editor.formatOnSave": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[scss]": {
+    "editor.formatOnSave": false
+  },
+  "editor.smoothScrolling": true,
+  "editor.smartSelect.selectSubwords": true,
+  "editor.wordWrap": "on",
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.guides.indentation": false,
+  "html.format.wrapLineLength": 0,
+  "files.defaultLanguage": "typescript",
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/*tmp*": true,
+    "**/*coverage*": true,
+    "**/*node_modules": true,
+    "**/*package-lock.json*": true,
+    "**/pnpm-lock.yaml": true,
+    "**/*yarn.lock*": true,
+    "**/build": true,
+    "**/apps/backend/libs": true,
+    "**/.docusaurus": true,
+    "**/.angular": true,
+    "**/dist": true,
+  },
+  "editor.fontFamily": "'MonoLisa Trial','Cascadia Code','Cousine','Jetbrains Mono','Fira Code',Consolas, 'SF Mono', 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "js/ts.implicitProjectConfig.experimentalDecorators": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+  "typescript.preferences.importModuleSpecifier": "project-relative",
+  "hediet.vscode-drawio.theme": "atlas",
+  "vsicons.presets.angular": true,
+  "workbench.iconTheme": "vscode-icons",
+  "window.zoomLevel": 0,
+  "npm.packageManager": "pnpm",
+  // "editor.fontSize": 14,
+  "material-icon-theme.activeIconPack": "nest",
+  "material-icon-theme.folders.associations": {
+    "context": "app",
+    "resolvers": "controller",
+    "types": "class",
+    "entities": "class",
+    "migrations": "import",
+    "seeds": "helper",
+    "factories": "lib",
+    "dto": "Docs"
+  },
+  "material-icon-theme.files.associations": {
+    "*.repository.ts": "Nest-gateway",
+    "*.entity.ts": "Nest-pipe",
+    "*.config.ts": "Settings",
+    "*.dto.ts": "Document",
+    "*.mail.ts": "Email",
+    "main.ts": "Nodejs"
+  },
+  "scm.diffDecorations": "none",
+  "vscode-vitest.packageManager": "pnpm",
+  "vscode-vitest.executableOptions": {
+    "watch": true,
+    "debug": true,
+    "run": true,
+  },
+  "testing.automaticallyOpenPeekView": "never",
+  "javascript.suggest.autoImports": true,
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "angular.enable-strict-mode-prompt": false,
+  "[javascript][typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    }
+  },
+  "CodeGPT.apiKey": "CodeGPT Plus Beta",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": "nx.json,.npmrc,.nvmrc,package-lock.json,pnpm-lock.yaml,yarn.lock,.gitignore,tsconfig.json,tsconfig.base.json,playwright.config.ts",
+    "*project.json": "package.json,tsconfig.json,.swcrc,ng-package.json,vite.config.ts",
+    "*.component.ts": "$(capture).component.html, $(capture).component.css, $(capture).module.ts, $(capture).component.spec.ts",
+    "*.module.ts": "$(capture).controller.ts, $(capture).service.ts",
+  },
+}
