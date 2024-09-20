@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { COLUMN_NAMES, ENTITY_NAMES } from 'src/common/constants/database.constants';
+import { COLUMN_NAMES, ENTITY_NAMES } from '../../../common/constants/database.constants';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 
