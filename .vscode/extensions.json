@@ -11,6 +11,7 @@
     "BitBelt.converttoasciiart",
     "ms-playwright.playwright",
     "oderwat.indent-rainbow",
-    "SirTori.indenticator"
+    "SirTori.indenticator",
+    "firsttris.vscode-jest-runner"
   ]
 }
