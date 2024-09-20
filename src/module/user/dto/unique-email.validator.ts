@@ -13,10 +13,9 @@ export class IsUniqueEmailConstraint implements ValidatorConstraintInterface {
     ) { }
 
     async validate(email: string): Promise<boolean> {
-        const user = await this.userRepository.findOne({ where: { email } });
+        console.log(this.userRepository);
 
-        console.log('log user', user);
-
+        const user = await this.userRepository.findOne({ where: { email: email } });
         return !user;
     }
 

@@ -9,9 +9,8 @@ import { getMetadataArgsStorage } from 'typeorm';
             host: "localhost",
             port: 27017,
             database: "admin",
-            // "entities": [__dirname + '/**/*.entity.{ts,js}'],
             entities: getMetadataArgsStorage().tables.map(tbl => tbl.target),
-            synchronize: true, // Set to false in production
+            synchronize: true,
             useUnifiedTopology: true,
             logging: true
         }),

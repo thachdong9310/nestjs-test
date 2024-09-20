@@ -12,7 +12,7 @@ export class CreateUserDto {
 
     @IsNotEmpty({ message: 'Email bắt buộc' })
     @IsEmail({}, { message: 'Sai định dạng email' })
-    @IsUniqueEmail({ message: 'Email must be unique' })
+    // @IsUniqueEmail({ message: 'Email must be unique' })
     email: string;
 
     @IsNotEmpty({ message: 'Mật khẩu bắt buộc' })
