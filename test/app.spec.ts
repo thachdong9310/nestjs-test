@@ -3,6 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { ObjectId } from 'mongodb';
+import { MongoMemoryServerFactory } from '../src/common/mongodb-memory-server.provider';
 
 describe('User e2e', () => {
   let app: INestApplication;
@@ -16,6 +17,12 @@ describe('User e2e', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
   });
+
+  afterAll(async () => {
+    await MongoMemoryServerFactory.stop();
+    await app.close();
+  });
+
 
   it('get hello', () => {
     return request(app.getHttpServer())
