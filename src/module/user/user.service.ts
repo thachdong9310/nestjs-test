@@ -1,11 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-
-// import { User, UserDocument } from 'src/schemas/user.schema';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class UserService {
@@ -15,34 +14,41 @@ export class UserService {
     ) { }
 
     async create(createUserDto: CreateUserDto) {
-        console.log('vao');
+        console.log('vao day');
 
-        const user = this.userRepository.create(createUserDto);
-        return await this.userRepository.save(user);
+        try {
+            const user = this.userRepository.create(createUserDto);
+            return await this.userRepository.save(user);
+        } catch (error) {
+            console.log(error);
+
+            throw new ConflictException('Email is already in use.');
+        }
+
     }
 
     async findAll(): Promise<Array<User>> {
         return await this.userRepository.find();
     }
 
-    async findOne(id: number): Promise<any> {
+    async findOne(id: ObjectId): Promise<User> {
         try {
-            return await this.userRepository.findOne({ where: { id } });
+            return await this.userRepository.findOne({ where: { _id: id } });
         } catch (error) {
             console.error('Error finding user:', error);
             throw error;
         }
     }
 
-    async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-        const user = await this.userRepository.findOne({ where: { id } });
-        await this.userRepository.update(user.id, updateUserDto);
+    async update(id: ObjectId, updateUserDto: UpdateUserDto): Promise<User> {
+        const user = await this.userRepository.findOne({ where: { _id: id } });
+        await this.userRepository.update(user._id, updateUserDto);
         const updatedUser = await this.findOne(id);
         return updatedUser;
     }
 
-    async remove(id: number) {
-        const user = await this.userRepository.findOne({ where: { id } });
+    async remove(id: ObjectId) {
+        const user = await this.userRepository.findOne({ where: { _id: id } });
         if (!user) {
             throw new NotFoundException(`User with ID ${id} not found`);
         }

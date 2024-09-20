@@ -1,16 +1,18 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsUniqueEmail } from './unique-email.validator';
 
 export class CreateUserDto {
     @IsNotEmpty({ message: 'Tên là bắt buộc' })
     @IsString({ message: 'Tên phải là một chuỗi' })
-    first_name: string;
+    firstName: string;
 
     @IsNotEmpty({ message: 'Họ là bắt buộc' })
     @IsString({ message: 'Họ phải là một chuỗi' })
-    last_name: string;
+    lastName: string;
 
     @IsNotEmpty({ message: 'Email bắt buộc' })
     @IsEmail({}, { message: 'Sai định dạng email' })
+    @IsUniqueEmail({ message: 'Email must be unique' })
     email: string;
 
     @IsNotEmpty({ message: 'Mật khẩu bắt buộc' })

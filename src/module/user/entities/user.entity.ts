@@ -1,11 +1,12 @@
+import { ObjectId } from 'mongodb';
 import { COLUMN_NAMES, ENTITY_NAMES } from 'src/common/constants/database.constants';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 
 @Entity({ name: ENTITY_NAMES.USER, orderBy: { firstName: 'ASC' } })
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @ObjectIdColumn()
+    _id: ObjectId;
 
     // @OneToMany(() => Project, (project) => project.user)
     // projects: Project[];

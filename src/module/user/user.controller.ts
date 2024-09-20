@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Types } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 @Controller('user')
 export class UserController {
@@ -28,7 +29,7 @@ export class UserController {
             throw new BadRequestException('Invalid ID format');
         }
 
-        const user = await this.userService.findOne(+id);
+        const user = await this.userService.findOne(new ObjectId(id));
         if (!user) {
             throw new NotFoundException('User not found');
         }
@@ -39,7 +40,7 @@ export class UserController {
     @Patch(':id')
     @HttpCode(HttpStatus.OK)
     update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-        return this.userService.update(+id, updateUserDto);
+        return this.userService.update(new ObjectId(id), updateUserDto);
     }
 
     @Delete(':id')
@@ -47,6 +48,6 @@ export class UserController {
     remove(@Param('id') id: string) {
         console.log('delete', id);
 
-        return this.userService.remove(+id);
+        return this.userService.remove(new ObjectId(id));
     }
 }
