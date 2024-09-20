@@ -4,7 +4,7 @@ import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { ObjectId } from 'mongodb';
 
-describe('AppController e2e', () => {
+describe('User e2e', () => {
   let app: INestApplication;
   let userId: ObjectId;
 
@@ -59,6 +59,55 @@ describe('AppController e2e', () => {
     await request(app.getHttpServer())
       .delete(`/user/${userId}`)
       .expect(204); // Expect 204 No Content since no response body on delete
+  });
+
+
+  it('should fail validation on create user with missing fields', async () => {
+    const response = await request(app.getHttpServer())
+      .post('/user')
+      .send({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      })
+      .expect(400); // Bad Request
+
+    expect(response.body).toHaveProperty('message'); // Ensure error message is present
+    expect(response.body.message).toContain('Tên là bắt buộc'); // Check custom error messages
+    expect(response.body.message).toContain('Họ là bắt buộc');
+    expect(response.body.message).toContain('Email bắt buộc');
+    expect(response.body.message).toContain('Mật khẩu bắt buộc');
+  });
+
+  it('should fail validation on create user with invalid email', async () => {
+    const response = await request(app.getHttpServer())
+      .post('/user')
+      .send({
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'invalid-email',
+        password: 'password123',
+      })
+      .expect(400); // Bad Request
+
+    expect(response.body).toHaveProperty('message');
+    expect(response.body.message).toContain('Sai định dạng email');
+  });
+
+  it('should fail validation on create user with short password', async () => {
+    const response = await request(app.getHttpServer())
+      .post('/user')
+      .send({
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john.doe@example.com',
+        password: '123',
+      })
+      .expect(400); // Bad Request
+
+    expect(response.body).toHaveProperty('message');
+    expect(response.body.message).toContain('Mật khẩu cần ít nhất 6 kí tự');
   });
 });
 
