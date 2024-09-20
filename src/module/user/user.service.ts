@@ -27,6 +27,11 @@ export class UserService {
 
     }
 
+    async validateUniqueEmail(email: string): Promise<boolean> {
+        const user = await this.userRepository.findOne({ where: { email } });
+        return !user;
+    }
+
     async findAll(): Promise<Array<User>> {
         return await this.userRepository.find();
     }

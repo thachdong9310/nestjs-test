@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { getMetadataArgsStorage } from 'typeorm';
+import { DataSource, getMetadataArgsStorage } from 'typeorm';
 import { MongoMemoryServerFactory } from '../mongodb-memory-server.provider';
 
 @Module({
@@ -22,9 +22,11 @@ import { MongoMemoryServerFactory } from '../mongodb-memory-server.provider';
                 url: await MongoMemoryServerFactory.start(), // Use the in-memory MongoDB URI
                 useUnifiedTopology: true,
                 entities: getMetadataArgsStorage().tables.map(tbl => tbl.target),
-                synchronize: true,  
+                synchronize: true,
+                dropSchema: true,
+                autoLoadEntities: true,
                 logging: ['query', 'error']
-            }),
+            })
         }),
     ],
     exports: [TypeOrmModule],

@@ -10,9 +10,9 @@ dotenv.config();
 
 @Module({
     imports: [
+        TypeOrmConfigModule,
         UserModule,
         TaskModule,
-        TypeOrmConfigModule
     ],
     controllers: [AppController],
     providers: [AppService],
