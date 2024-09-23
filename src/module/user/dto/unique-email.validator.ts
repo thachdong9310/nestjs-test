@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { registerDecorator, Validate, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
+import { Validate, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
 import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 
@@ -8,7 +8,7 @@ import { User } from '../entities/user.entity';
 @Injectable()
 export class IsUniqueEmailConstraint implements ValidatorConstraintInterface {
     constructor(
-        @InjectRepository(User) 
+        @InjectRepository(User)
         private readonly userRepository: Repository<User>
     ) {
      }
