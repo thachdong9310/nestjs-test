@@ -2,10 +2,13 @@
     "name": "my-new-nest",
     "version": "0.0.1",
     "description": "",
+    "type": "module",
     "author": "",
     "private": true,
     "license": "UNLICENSED",
     "scripts": {
+        "vite": "vite",
+        "vitest": "vitest",
         "build": "nest build",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "nest start --watch",
