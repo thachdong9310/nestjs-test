@@ -3,6 +3,8 @@ import { defineConfig } from "vite";
 import { VitePluginNode } from "vite-plugin-node";
 
 export default defineConfig(({ mode }): any => {
+  const isTest = mode === "test";
+
   return {
     root: "./",
     build: {
@@ -49,7 +51,7 @@ export default defineConfig(({ mode }): any => {
         appPath: "./src/main.ts",
         exportName: "viteNodeApp",
         tsCompiler: "swc",
-        initAppOnBoot: true, // Turn off initAppOnBoot when in test mode
+        initAppOnBoot: !isTest, // Turn off initAppOnBoot when in test mode
       }),
     ],
   };
