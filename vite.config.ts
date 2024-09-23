@@ -4,7 +4,7 @@ import { VitePluginNode } from "vite-plugin-node";
 
 export default defineConfig(({ mode }): any => {
   return {
-    root: __dirname,
+    root: "./",
     build: {
       target: "es2022",
       minify: true,
@@ -23,7 +23,7 @@ export default defineConfig(({ mode }): any => {
       include: ["**/*.spec.ts"],
       environment: "node",
     },
-    esbuild: true,
+    esbuild: false,
     optimizeDeps: {
       esbuildOptions: { treeShaking: true },
       exclude: [
