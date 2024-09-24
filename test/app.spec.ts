@@ -1,8 +1,9 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import request from 'supertest';
+
 import { useContainer } from "class-validator";
 import { ObjectId } from 'mongodb';
-import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { MongoMemoryServerFactory } from '../src/common/mongodb-memory-server.provider';
 
