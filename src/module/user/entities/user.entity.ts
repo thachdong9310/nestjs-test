@@ -6,7 +6,7 @@ import { Column, Entity, ObjectIdColumn } from 'typeorm';
 @Entity({ name: ENTITY_NAMES.USER, orderBy: { firstName: 'ASC' } })
 export class User {
     @ObjectIdColumn()
-    _id: ObjectId;
+    _id: string;
 
     // @OneToMany(() => Project, (project) => project.user)
     // projects: Project[];
